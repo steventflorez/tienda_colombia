@@ -14,3 +14,36 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.icon{
+  margin-left: 5%;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+ 
+}
+.cont{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.btn-opcion{
+  width: 100%;
+}
+
+.img{
+  width: 300px;
+}
+
+.alinear{
+  text-align: center;
+}
+
+.link_a{
+  text-decoration: none;
+}
