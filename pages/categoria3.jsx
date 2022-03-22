@@ -1,15 +1,54 @@
-import React from 'react'
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import { Nav } from '../components/Nav'
 import Opcion from '../components/Opcion'
+import categorias from '../categorias.json'
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react'
 
 export default function categoria3() {
-  return (
-    <Nav>
-       <div className="cont row">
-        <Opcion ir='productos' nombre='detalles' icono='M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7h6zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9H2.5z'/>
-        <Opcion/>
-        <Opcion/>
+
+    const rauter = useRouter()
+    const id = rauter.query.element
+    const id_padre = rauter.query.father
+    const [elementos,setElementos]=useState([])
+    const [padre,setPadre]=useState([])
+    const [hijo,setHijo]=useState([])
+
+    useEffect(() => {
+        categorias.map((categoria) => {
+            if (categoria.id == id_padre) {
+                categoria.subCategoria.map((subCategoria) => {
+                    if (subCategoria.id == id) {
+                        setHijo(subCategoria.id)
+                        setPadre(id_padre)
+                        setElementos(subCategoria.subCategoria)
+                    }
+                })
+
+                
+
+            }
+        })
+    }, [])
+    return (
+        <Nav>
+            <div className="cont row">
+                {
+
+
+                    elementos.map((categoria) => (
+
+                        <Opcion key={categoria.id} elemento={categoria} padre={padre} hijo={hijo} ir={categoria.ir} />
+
+
+                    ))}
+
+
             </div>
-    </Nav>
-  )
+
+        </Nav>
+    )
+
+    
 }

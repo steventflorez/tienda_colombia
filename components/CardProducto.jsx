@@ -1,23 +1,38 @@
-import React from 'react'
 
-export const CardProducto = () => {
+
+
+export const CardProducto = ({titulo,img,des,total,fin,comicion}) => {
+
+    
+    const login = localStorage.getItem('login')
+    let display = 'badge bg-info d-none'
+    //const [display,setDisplay]=useState('badge bg-info d-none')
+    
+    if(login == 'true'){
+      display ='badge bg-info d-block'
+    }
+
   return (
     <div className='col-lg-4 col-12'>
       <div className="card bg-light mb-3 " style={{ maxWidth: '20rem' }}>
-        <div className="card-header">Locion</div>
+        <div className="card-header">{titulo}</div>
         <div className="card-body alinear">
 
-          <img className='img' src="https://http2.mlstatic.com/D_NQ_NP_830631-MCO28182908435_092018-O.jpg" />
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, rerum numquam molestias mollitia esse reprehenderit? Itaque labore modi saepe quam, praesentium quisquam velit voluptatum. Accusamus quod fugiat totam nostrum tempore.</p>
+          <img className='img' src={img} />
+          <p>{des}</p>
         </div>
         <div className="card-footer">
           <div className="row">
             <div className="col-12">
-              <span className="badge bg-primary"><strong>Precio Decontado:</strong> $300000</span>
+              <span className="badge bg-primary"><strong>Precio Decontado:</strong>$ {total}</span>
 
             </div>
             <div className="col-12">
-              <span className="badge bg-warning"><strong>Precio Financiado:</strong> $300000</span>
+              <span className="badge bg-warning"><strong>Precio Financiado:</strong> $ {fin}</span>
+            </div>
+            <br />
+            <div className="col-12">
+              <span className={display}><strong>Comición:</strong> $ {comicion}</span>
             </div>
 
           </div>

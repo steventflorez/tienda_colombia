@@ -31,6 +31,16 @@ a {
   justify-content: center;
   margin-bottom: 30px;
 }
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+.fluit{
+  transition-property: all;
+    transition-duration: 0.4s;
+}
 
 .btn-opcion{
   width: 100%;
