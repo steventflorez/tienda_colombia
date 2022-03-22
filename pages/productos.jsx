@@ -5,6 +5,7 @@ import { Nav } from '../components/Nav'
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import Modal from '../components/Modal';
 
 
 export default  function productos() {
@@ -53,6 +54,8 @@ export default  function productos() {
                         />
                 ))}
             </div>
+
+            <Modal/>
 
         </Nav>
     )
