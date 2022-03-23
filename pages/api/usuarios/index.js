@@ -17,9 +17,9 @@ export default function index(req, res) {
 const getUsuarios = async (req, res) => {
 
     try {
-        const cedula = req.query.cedula
+        const {donde, ref} = req.query
         //console.log(correo)
-        const [result] = await pool.query(`SELECT * FROM vendedor WHERE cedula = ${cedula} `)
+        const [result] = await pool.query(`SELECT * FROM vendedor WHERE ${donde} = ${ref} `)
         return res.status(200).json(result)
     } catch (error) {
         return res.status(200).json(error.message)

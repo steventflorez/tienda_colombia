@@ -12,12 +12,14 @@ export default  function productos() {
     
     const rauter = useRouter()
     const [products,setProducts]=useState([])
+    const [display, setDisplay] = useState('d-none')
+    const [id_pro,setId_pro]= useState()
 
     useEffect(() => {
         const cargarProductos = async()=>{
             const rute = `${rauter.query.father}${rauter.query.children}${rauter.query.element}`
     
-        const { data: productos } = await axios.get('http://localhost:3000/api/productos', {
+        const { data: productos } = await axios.get('/api/productos', {
                     params: {
                         ruta: rute
     
@@ -31,7 +33,18 @@ export default  function productos() {
         
     }, [])
 
-    
+    const upModal = () => {
+
+        if (display == 'd-none') {
+            setDisplay('d-block')
+        } else {
+            setDisplay('d-none')
+        }
+    }
+
+    const setPro =(producto)=>{
+        setId_pro(producto)
+    }
 
     
 
@@ -51,13 +64,17 @@ export default  function productos() {
                         total={producto.precio_total}
                         fin={producto.precio_fin}
                         comicion={producto.comicion}
+                        upModal={upModal}
+                        id_pro={producto.id}
+                        setPro={setPro}
+                        
                         />
                 ))}
             </div>
 
-            <Modal/>
+            <Modal display={display} upModal={upModal} id={id_pro}/>
 
-        </Nav>
+        </Nav >
     )
     
     

@@ -1,21 +1,129 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
-export default function Modal() {
+export default function Modal({ display, upModal, id }) {
+
+    const clase = `modal ${display}`
+    const [cuotass, setCuotass] = useState()
+    const [idVen, setIdVen] = useState()
+    const closeModal = () => {
+        upModal()
+    }
+
+    const upSolicitud = async (e) => {
+        e.preventDefault();
+
+
+        if (e.target[6].value != '') {
+            const { data: vendedor } = await axios.get('/api/usuarios', {
+                params: {
+                    donde: 'codigo',
+                    ref: e.target[6].value
+                }
+            })
+
+            if (vendedor.length != 0) {
+
+                setIdVen(vendedor[0].id)
+                console.log(idVen, 'encontrado')
+
+                const res = await axios.post('http://localhost:3000/api/solicitudes', {
+                    cedula: e.target[1].value,
+                    nombre: e.target[0].value,
+                    empresa: e.target[2].value,
+                    direccion: e.target[3].value,
+                    telefono: e.target[4].value,
+                    correo: e.target[5].value,
+                    referido: e.target[6].value,
+                    cuotas: cuotass,
+                    vendedor_id: vendedor[0].id,
+                    productos_id: id
+
+
+                });
+
+                const soli = {
+
+                }
+                console.log(soli, '')
+            } else {
+                setIdVen('1')
+
+                const res = await axios.post('http://localhost:3000/api/solicitudes', {
+                    cedula: e.target[1].value,
+                    nombre: e.target[0].value,
+                    empresa: e.target[2].value,
+                    direccion: e.target[3].value,
+                    telefono: e.target[4].value,
+                    correo: e.target[5].value,
+                    referido: e.target[6].value,
+                    cuotas: cuotass,
+                    vendedor_id: '1',
+                    productos_id: id
+
+
+                });
+
+
+            }
+
+
+
+        } else {
+            const res = await axios.post('http://localhost:3000/api/solicitudes', {
+                cedula: e.target[1].value,
+                nombre: e.target[0].value,
+                empresa: e.target[2].value,
+                direccion: e.target[3].value,
+                telefono: e.target[4].value,
+                correo: e.target[5].value,
+                referido: e.target[6].value,
+                cuotas: cuotass,
+                vendedor_id: '1',
+                productos_id: id
+
+
+            });
+        }
+
+
+
+
+
+
+
+        closeModal()
+        alert('su solicitud fue radicada correctamente, un asesor se comunicara con usted pronto')
+
+    }
+
+    const setCuotas = (e) => {
+
+        if (e.target.value == 'option1') {
+            setCuotass('12')
+        }
+        if (e.target.value == 'option2') {
+            setCuotass('24')
+        }
+        if (e.target.value == 'option3') {
+            setCuotass('36')
+        }
+    }
     return (
         <div>
-            <div className="modal">
+            <div className={clase}>
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Adquirir Producto</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <button type="button" onClick={closeModal} className="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" />
                             </button>
                         </div>
                         <div className="modal-body">
-                            <p>Diligenciar los siguientes datos para la solisitud.</p>
+                            <p>Diligenciar los siguientes datos para la solicitud.</p>
 
-                            <form action="">
+                            <form onSubmit={upSolicitud}>
 
                                 <div className="row">
                                     <div className="col-6">
@@ -68,7 +176,7 @@ export default function Modal() {
                                     <div className="col-12">
                                         <div className="form-group">
                                             <label htmlFor="exampleInputEmail1" className="form-label mt-4">Referido <small id="emailHelp" className="form-text text-muted">Opcional</small> </label>
-                                            <input type="number" className="form-control" id="cor" aria-describedby="emailHelp" placeholder="Referido" />
+                                            <input type="number" className="form-control" id="ref" aria-describedby="emailHelp" placeholder="Referido" />
 
                                         </div>
                                     </div>
@@ -79,7 +187,7 @@ export default function Modal() {
                                         <div className="col-4">
                                             <div className="form-check">
                                                 <label className="form-check-label">
-                                                    <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios1" defaultValue="option1" defaultChecked />
+                                                    <input type="radio" onChange={setCuotas} className="form-check-input" name="optionsRadios" id="optionsRadios1" defaultValue="option1" defaultChecked />
                                                     12
                                                 </label>
                                             </div>
@@ -88,7 +196,7 @@ export default function Modal() {
                                         <div className="col-4">
                                             <div className="form-check">
                                                 <label className="form-check-label">
-                                                    <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios2" defaultValue="option2" />
+                                                    <input type="radio" onChange={setCuotas} className="form-check-input" name="optionsRadios" id="optionsRadios2" defaultValue="option2" />
                                                     24
                                                 </label>
                                             </div>
@@ -97,7 +205,7 @@ export default function Modal() {
                                         <div className="col-4">
                                             <div className="form-check">
                                                 <label className="form-check-label">
-                                                    <input type="radio" className="form-check-input" name="optionsRadios" id="optionsRadios2" defaultValue="option2" />
+                                                    <input type="radio" onChange={setCuotas} className="form-check-input" name="optionsRadios" id="optionsRadios2" defaultValue="option3" />
                                                     36
                                                 </label>
                                             </div>
@@ -106,20 +214,20 @@ export default function Modal() {
 
 
 
-                                        
+
                                     </fieldset>
 
 
                                 </div>
 
+                                <div className="modal-footer">
+                                    <button type="submit" className="btn btn-primary">Solicitar</button>
 
+                                </div>
 
                             </form>
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-primary">Solisitar</button>
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+
                     </div>
                 </div>
             </div>

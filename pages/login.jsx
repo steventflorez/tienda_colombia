@@ -16,7 +16,8 @@ export default function login() {
     
         const { data: usuario } = await axios.get('http://localhost:3000/api/usuarios', {
                     params: {
-                        cedula: document.querySelector('#correo').value
+                        donde: 'cedula',
+                        ref: document.querySelector('#correo').value
     
                     }
                 })
@@ -40,7 +41,7 @@ export default function login() {
     return (
         <div className='login'>
             <div className="card text-white bg-primary mb-3" style={{ maxWidth: '20rem' }}>
-                <div className="card-header">Iniciar de seción</div>
+                <div className="card-header">Iniciar de sesión</div>
                 <div className="card-body">
                     <form onSubmit={login}>
                         <div>

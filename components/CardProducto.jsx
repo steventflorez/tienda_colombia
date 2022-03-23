@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from 'react'
 
 
+export const CardProducto = ({titulo,img,des,total,fin,comicion,upModal, id_pro, setPro}) => {
 
-export const CardProducto = ({titulo,img,des,total,fin,comicion}) => {
+  
 
     
     const login = localStorage.getItem('login')
@@ -12,13 +14,18 @@ export const CardProducto = ({titulo,img,des,total,fin,comicion}) => {
       display ='badge bg-info d-block'
     }
 
+    const abrirModal=()=>{
+      upModal()
+      setPro(id_pro)
+    }
+
   return (
     <div className='col-lg-4 col-12'>
       <div className="card bg-light mb-3 " style={{ maxWidth: '20rem' }}>
         <div className="card-header">{titulo}</div>
         <div className="card-body alinear">
 
-          <img className='img' src={img} />
+          <img className='img' width={150} src={img} />
           <p>{des}</p>
         </div>
         <div className="card-footer">
@@ -37,7 +44,7 @@ export const CardProducto = ({titulo,img,des,total,fin,comicion}) => {
 
           </div>
           <br />
-          <button type="button" className="btn btn-success w-100">Adquirir</button>
+          <button type="button" onClick={abrirModal} className="btn btn-success w-100">Adquirir</button>
         </div>
       </div>
     </div>
