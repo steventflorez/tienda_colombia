@@ -27,7 +27,7 @@ export default function Modal({ display, upModal, id }) {
                 setIdVen(vendedor[0].id)
                 console.log(idVen, 'encontrado')
 
-                const res = await axios.post('http://localhost:3000/api/solicitudes', {
+                const res = await axios.post('/api/solicitudes', {
                     cedula: e.target[1].value,
                     nombre: e.target[0].value,
                     empresa: e.target[2].value,
@@ -49,7 +49,7 @@ export default function Modal({ display, upModal, id }) {
             } else {
                 setIdVen('1')
 
-                const res = await axios.post('http://localhost:3000/api/solicitudes', {
+                const res = await axios.post('/api/solicitudes', {
                     cedula: e.target[1].value,
                     nombre: e.target[0].value,
                     empresa: e.target[2].value,
