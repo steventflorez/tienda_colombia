@@ -64,7 +64,31 @@ export default function Home() {
           categorias.map((categoria) => (
             <Opcion key={categoria.id} elemento={categoria} ir='categoria2' />
           ))}
+
+        
+
       </div>
+      <footer className='bg-light'>
+          <h3>Nuestros clientes</h3>
+          <div className="raw cont_footer">
+            <div className="col-3 im">
+                <img src="https://res.cloudinary.com/stevet94/image/upload/v1648079455/imagenes/escudo_policia_11_znye5e.png" width={'40px'} alt="" />
+                <h6>Policia</h6>
+            </div>
+            <div className="col-3 im">
+                <img src="https://res.cloudinary.com/stevet94/image/upload/v1648079376/imagenes/Escudo_Fuerza_Aerea_Colombiana.svg_j5mfjz.png" width={'40px'} alt="" />
+                <h6>FAC</h6>
+            </div>
+            <div className="col-3 im">
+                <img src="https://res.cloudinary.com/stevet94/image/upload/v1648079332/imagenes/1200px-Escudo_her%C3%A1ldico_Armada_Nacional_de_Colombia.svg_xwvbnq.png" width={'40px'} alt="" />
+                <h6>Armada</h6>
+            </div>
+            <div className="col-3 im">
+                <img src="https://res.cloudinary.com/stevet94/image/upload/v1648079066/imagenes/1200px-Escudo_Ejercito_Nacional_de_Colombia.svg_ufaslo.png" width={'40px'} alt="" />
+                <h6>Ejercito</h6>
+            </div>
+          </div>
+        </footer>
 
 
 

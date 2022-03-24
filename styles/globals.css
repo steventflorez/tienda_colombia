@@ -18,16 +18,37 @@ a {
 .icon{
   margin-left: 5%;
 }
-
+footer{
+  margin-top: auto;
+  text-align: center;
+  color: rgb(59, 59, 59);
+  border-radius: 30px;
+  box-shadow: 1px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  
+}
+.im{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cont_footer{
+  display: flex;
+  flex-direction: row;
+}
 .container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 30px;
+  height: 800px;
+  
  
 }
 .cont{
   width: 100%;
   display: flex;
+  
   justify-content: center;
   margin-bottom: 30px;
 }
