@@ -40,7 +40,9 @@ const saveSolicitud = async (req, res) => {
             estado:'1',
             descripcion:'',
             productos_id,
-            vendedor_id
+            vendedor_id,
+            direccion
+            
         })
         console.log(result);
         return res.status(200).json('!Usuario registrado Con exito¡');
