@@ -70,7 +70,7 @@ export default function Modal({ display, upModal, id }) {
 
 
         } else {
-            const res = await axios.post('http://localhost:3000/api/solicitudes', {
+            const res = await axios.post('/api/solicitudes', {
                 cedula: e.target[1].value,
                 nombre: e.target[0].value,
                 empresa: e.target[2].value,
