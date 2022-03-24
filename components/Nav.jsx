@@ -21,7 +21,7 @@ export const Nav = ({ children }) => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link href='/'>
-            <a className="navbar-brand" >Tienda</a>
+            <a className="navbar-brand" >Home</a>
           </Link>
           <button className="navbar-toggler" onClick={change} type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
